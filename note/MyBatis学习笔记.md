@@ -61,3 +61,63 @@
  </configuration>
 ```
 
+（3）、写MyBatisUtil工具类：
+
+```java
+/**
+ * 工具类
+ */
+public class MyBatisUtil {
+
+    private static ThreadLocal<SqlSession> threadLocal = new ThreadLocal<SqlSession>();
+    private static SqlSessionFactory sqlSessionFactory;
+
+    /**
+     * 加载resources/mybatis-config.xml配置文件
+     */
+    static {
+        try {
+//            Reader resource = Resources.getResourceAsReader("mybatis-config.xml");
+            InputStream resource = MyBatisUtil.class.getClassLoader().getResourceAsStream("mybatis-config.xml");
+            sqlSessionFactory = new SqlSessionFactoryBuilder().build(resource);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 禁止外部通过new创建
+     */
+    private MyBatisUtil() {
+    }
+
+    /**
+     * 获取SqlSession对象
+     * @return sqlSession
+     */
+    public static SqlSession getSqlSession() {
+        //从线程中获取SqlSession对象
+        SqlSession sqlSession = threadLocal.get();
+        if (sqlSession == null) {
+            sqlSession = sqlSessionFactory.openSession(true);
+            threadLocal.set(sqlSession);
+        }
+        //返回sqlSession对象
+        return sqlSession;
+    }
+
+    /**
+     * 关闭SqlSession对象
+     */
+    public static void closeSqlSession() {
+        SqlSession sqlSession = threadLocal.get();
+        if (sqlSession != null) {
+            //关闭SqlSession对象
+            sqlSession.close();
+            //分开当前线程与SqlSession对象的关系（让GC尽早回收）
+            threadLocal.remove();
+        }
+    }
+}
+```
+
