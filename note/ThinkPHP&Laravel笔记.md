@@ -4,6 +4,11 @@
 
 **Elasticsearch-PHP 中文文档** :https://learnku.com/docs/elasticsearch-php/6.0
 
+Restful:
+
+http://www.ruanyifeng.com/blog/2014/05/restful_api.html
+http://www.ruanyifeng.com/blog/2011/09/restful.html
+
 ## 事务
 
 > 使用事务处理的话，需要数据库引擎支持事务处理。比如 `MySQL` 的 `MyISAM` 不支持事务处理，需要使用 `InnoDB` 引擎。
@@ -57,6 +62,58 @@ Db::table('user')->fetchSql(true)->find(1);
 
 composer require phpenum/phpenum
 
-
-
 https://blog.csdn.net/u012981882/article/details/106844872/
+
+
+
+## 验证码
+
+> unique:table,field,except,pk
+
+验证当前请求的字段值是否为唯一的
+
+```php
+// 表示验证name字段的值是否在user表（不包含前缀）中唯一
+'name'   => 'unique:user',
+// 验证其他字段
+'name'   => 'unique:user,account',
+// 排除某个主键值
+'name'   => 'unique:user,account,10',
+// 指定某个主键值排除
+'name'   => 'unique:user,account,10,user_id',
+
+```
+
+如果需要对复杂的条件验证唯一，可以使用下面的方式：
+
+```php
+// 多个字段验证唯一验证条件
+'name'   => 'unique:user,status^account',
+// 复杂验证条件
+'name'   => 'unique:user,status=1&account='.$data['account'],
+```
+
+登录场景
+
+```php
+$data = $request->param();
+$result = Validate::rule([
+	"username" => 'unique:admin,username^password',
+])->check([
+    'username' => $data['username'],
+    'password' => MD5Util::passwordEncrypt($data['password'])
+]);
+```
+
+
+
+# Restful api
+
+> - GET /zoos：列出所有动物园
+> - POST /zoos：新建一个动物园
+> - GET /zoos/ID：获取某个指定动物园的信息
+> - PUT /zoos/ID：更新某个指定动物园的信息（提供该动物园的全部信息）
+> - PATCH /zoos/ID：更新某个指定动物园的信息（提供该动物园的部分信息）
+> - DELETE /zoos/ID：删除某个动物园
+> - GET /zoos/ID/animals：列出某个指定动物园的所有动物
+> - DELETE /zoos/ID/animals/ID：删除某个指定动物园的指定动物
