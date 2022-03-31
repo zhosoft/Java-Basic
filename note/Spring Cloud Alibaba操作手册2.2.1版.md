@@ -409,6 +409,8 @@ spring:
 
 https://github.com/alibaba/Sentinel/releases
 
+
+
 4、解压，启动 sentinel-dashboard-1.7.2.jar，浏览器访问 localhost:8080
 
 5、启动服务，访问接口，再刷新 Sentinel 控制台页面，可以看到监控数据。
