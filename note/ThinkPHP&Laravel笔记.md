@@ -9,6 +9,10 @@ Restful:
 http://www.ruanyifeng.com/blog/2014/05/restful_api.html
 http://www.ruanyifeng.com/blog/2011/09/restful.html
 
+镜像网址：
+
+https://packagist.org/
+
 ## 事务
 
 > 使用事务处理的话，需要数据库引擎支持事务处理。比如 `MySQL` 的 `MyISAM` 不支持事务处理，需要使用 `InnoDB` 引擎。
