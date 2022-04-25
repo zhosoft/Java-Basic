@@ -2,7 +2,7 @@
 
 ## 技术架构图
 
-![image-20220408174404065](D:\Project_gitee\Java-basic\note\uushop项目分布式项目笔记.assets\image-20220408174404065.png)
+![image-20220408174404065](uushop项目分布式项目笔记.assets\image-20220408174404065.png)
 
 ## 技术选型
 

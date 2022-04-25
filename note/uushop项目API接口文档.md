@@ -407,6 +407,7 @@ token: eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MjQsIm1vYmlsZSI6IjEzMjAwMDAwMDAwIiwic3ViIjoi
 
 ```
 GET /sms/send
+bfe76993b7209d38fe91de3021fa2b36
 ```
 
 参数
@@ -510,7 +511,7 @@ POST /seller/product/add
 }
 ```
 
-### 查询商品
+### 查询商品列表
 
 ```
 GET /seller/product/list
@@ -548,7 +549,7 @@ size: 10
 }
 ```
 
-### 商品模糊查询
+### 商品列表模糊查询
 
 ```
 GET /seller/product/like
@@ -626,7 +627,7 @@ size: 10
 }
 ```
 
-### 通过 ID 查询商品
+### 通过 ID 查询商品信息
 
 ```
 GET /seller/product/findById
@@ -742,7 +743,7 @@ PUT /seller/product/update
 ### 导出Excel
 
 ```
-PUT /seller/product/export
+GET /seller/product/export
 ```
 
 参数
@@ -760,7 +761,7 @@ HttpServletResponse连接客户端下载工具
 ### 导入Excel
 
 ```
-PUT /seller/product/import
+GET /seller/product/import
 ```
 
 参数
@@ -867,7 +868,7 @@ orderId:"1579074660492865989"
 }
 ```
 
-### 柱状图
+### 获取柱状图统计数据
 
 ```
 PUT /seller/order/barSale
@@ -908,7 +909,7 @@ PUT /seller/order/barSale
 }
 ```
 
-### 基础折线图
+### 获取基础折线图统计数据
 
 ```
 PUT /seller/order/basicLineSale

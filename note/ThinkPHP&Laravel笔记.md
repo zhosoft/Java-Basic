@@ -70,7 +70,7 @@ https://blog.csdn.net/u012981882/article/details/106844872/
 
 
 
-## 验证码
+## 验证器
 
 > unique:table,field,except,pk
 
@@ -109,7 +109,23 @@ $result = Validate::rule([
 ]);
 ```
 
+## 请求信息
 
+```
+由于无法获取映射的controller、action名称，换个思路，采取$request->baseUrl()+$request->method()进行权限验证
+```
+
+```php
+//获取的是当前操作多应用模式当前应用名称
+$app = app('http')->getName();
+//获取的是当前操作控制器方法的实际名称
+$controller = Request::controller();
+//获取的是当前操作方法的实际名称
+$action = Request::action();
+//获取的是当前操作动词的实际名称
+$method = Request::method();
+$name = $app . DIRECTORY_SEPARATOR . $controller . DIRECTORY_SEPARATOR . $action;
+```
 
 # Restful api
 
