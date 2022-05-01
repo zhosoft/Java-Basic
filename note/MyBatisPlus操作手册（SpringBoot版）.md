@@ -1,4 +1,4 @@
-# 、MyBatis-Plus简介
+# MyBatis-Plus简介
 
 ## 简介
 
@@ -601,9 +601,9 @@ System.out.println(userMapper.selectById( 1 ));
 
 ##### 因为MyBatis-Plus只做增强，而不做改变
 
-# 三、基本CRUD
+# 基本CRUD
 
-## 1 、BaseMapper
+## BaseMapper
 
 ##### MyBatis-Plus中的基本CRUD在内置的BaseMapper中都已得到了实现，我们可以直接使用，接口如
 
@@ -948,7 +948,7 @@ UserService {
 
 ## e>测试批量插入
 
-# 四、常用注解
+# 常用注解
 
 ## 1 、@TableName
 
@@ -1280,7 +1280,7 @@ class="com.baomidou.mybatisplus.core.config.GlobalConfig$DbConfig">
 
 ##### SELECT id,username AS name,age,email,is_deleted FROM t_user WHERE is_deleted=0
 
-# 五、条件构造器和常用接口
+# 条件构造器和常用接口
 
 ## 1 、wapper介绍
 
@@ -1530,7 +1530,7 @@ users.forEach(System.out::println);
 }
 ```
 
-# 六、插件
+# 插件
 
 ## 1 、分页插件
 
@@ -1910,7 +1910,7 @@ System.out.println("小李修改的结果：" + result1);
 p2.setPrice(p2.getPrice() - 30 );
 ```
 
-# 七、通用枚举
+# 通用枚举
 
 ##### 表中的有些字段值是固定的，例如性别（男或女），此时我们可以使用MyBatis-Plus的通用枚举
 
@@ -1959,7 +1959,7 @@ private Integer sex;
 
 ## d>测试
 
-# 八、代码生成器
+# 代码生成器
 
 ## 1 、引入依赖
 
@@ -2014,7 +2014,7 @@ userMapper.insert(user);
 
 ## 2 、快速生成
 
-# 九、MyBatisX插件
+# MyBatisX插件
 
 ##### MyBatis-Plus为我们提供了强大的mapper和service模板，能够大大的提高开发效率
 
