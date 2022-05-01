@@ -6,9 +6,11 @@ MyBatis-Plus （简称 MP）是一个 MyBatis的增强工具 ，在 MyBatis 的�
 
 简化开发、提高效率而生 。
 
-**愿景**
+> **愿景**
+>
+> 我们的愿景是成为 MyBatis 最好的搭档，就像魂斗罗中的 1P、2P，基友搭配，效率翻倍。
 
-我们的愿景是成为 MyBatis 最好的搭档，就像魂斗罗中的 1P、2P，基友搭配，效率翻倍。
+![image-20220502000810463](..\note\MyBatisPlus操作手册（SpringBoot版）.assets\image-20220502000810463.png)
 
 ## 特性
 
@@ -16,41 +18,35 @@ MyBatis-Plus （简称 MP）是一个 MyBatis的增强工具 ，在 MyBatis 的�
 
 **损耗小** ：启动即会自动注入基本 CURD，性能基本无损耗，直接面向对象操作
 
-强大的 CRUD 操作 ：内置通用 Mapper、通用 Service，仅仅通过少量配置即可实现单表大部分
+**强大的 CRUD 操作 ：**内置通用 Mapper、通用 Service，仅仅通过少量配置即可实现单表大部分CRUD 操作，更有强大的条件构造器，满足各类使用需求
 
-CRUD 操作，更有强大的条件构造器，满足各类使用需求
+**支持 Lambda 形式调用 ：**通过 Lambda 表达式，方便的编写各类查询条件，无需再担心字段写错
 
-支持 Lambda 形式调用 ：通过 Lambda 表达式，方便的编写各类查询条件，无需再担心字段写错
+**支持主键自动生成 ：**支持多达 4 种主键策略（内含分布式唯一 ID 生成器 - Sequence），可自由配置，完美解决主键问题
 
-支持主键自动生成 ：支持多达 4 种主键策略（内含分布式唯一 ID 生成器 - Sequence），可自由配置，完美解决主键问题
+**支持 ActiveRecord 模式 ：**支持 ActiveRecord 形式调用，实体类只需继承 Model 类即可进行强大的 CRUD 操作
 
-支持 ActiveRecord 模式 ：支持 ActiveRecord 形式调用，实体类只需继承 Model 类即可进行强大的 CRUD 操作
+**支持自定义全局通用操作 ：**支持全局通用方法注入（ Write once, use anywhere ）
 
-支持自定义全局通用操作 ：支持全局通用方法注入（ Write once, use anywhere ）
+**内置代码生成器 ：**采用代码或者 Maven 插件可快速生成 Mapper 、 Model 、 Service 、Controller 层代码，支持模板引擎，更有超多自定义配置等您来使用基于 MyBatis 物理分页，开发者无需关心具体操作，配置好插件之后，写分页等同于普通 List 查询
 
-内置代码生成器 ：采用代码或者 Maven 插件可快速生成 Mapper 、 Model 、 Service 、Controller 层代码，支持模板引擎，更有超多自定义配置等您来使用
+**分页插件支持多种数据库 ：**支持 MySQL、MariaDB、Oracle、DB2、H2、HSQL、SQLite、Postgre、SQLServer 等多种数据库
 
-内置分页插件 ：基于 MyBatis 物理分页，开发者无需关心具体操作，配置好插件之后，写分页等同于普通 List 查询
+**内置性能分析插件 ：**可输出 SQL 语句以及其执行时间，建议开发测试时启用该功能，能快速揪出慢查询
 
-分页插件支持多种数据库 ：支持 MySQL、MariaDB、Oracle、DB2、H2、HSQL、SQLite、Postgre、SQLServer 等多种数据库
-
-内置性能分析插件 ：可输出 SQL 语句以及其执行时间，建议开发测试时启用该功能，能快速揪出慢查询
-
-内置全局拦截插件 ：提供全表 delete 、 update 操作智能分析阻断，也可自定义拦截规则，预防误操作
+**内置全局拦截插件 ：**提供全表 delete 、 update 操作智能分析阻断，也可自定义拦截规则，预防误操作
 
 ## 支持数据库
 
-##### 任何能使用MyBatis进行 CRUD, 并且支持标准 SQL 的数据库，具体支持情况如下
+> 任何能使用MyBatis进行 CRUD, 并且支持标准 SQL 的数据库，具体支持情况如下
 
-##### MySQL，Oracle，DB2，H2，HSQL，SQLite，PostgreSQL，SQLServer，Phoenix，Gauss ，
+- MySQL，Oracle，DB2，H2，HSQL，SQLite，PostgreSQL，SQLServer，Phoenix，Gauss ，ClickHouse，Sybase，OceanBase，Firebird，Cubrid，Goldilocks，csiidb
 
-##### ClickHouse，Sybase，OceanBase，Firebird，Cubrid，Goldilocks，csiidb
-
-##### 达梦数据库，虚谷数据库，人大金仓数据库，南大通用(华库)数据库，南大通用数据库，神通数据
-
-##### 库，瀚高数据库
+- 达梦数据库，虚谷数据库，人大金仓数据库，南大通用(华库)数据库，南大通用数据库，神通数据库，瀚高数据库
 
 ## 框架结构
+
+![image-20220502001005065](..\note\MyBatisPlus操作手册（SpringBoot版）.assets\image-20220502001005065.png)
 
 ## 代码及文档地址
 
@@ -111,495 +107,160 @@ INSERT INTO user (id, name, age, email) VALUES
 
 
 
-## 3 、创建maven工程
+## 创建maven工程
 
-### a>打包方式：jar
+### 初始化工程
 
-### b>引入依赖
+### 引入依赖
 
 ```xml
-<packaging>jar</packaging>
-<properties>
-	<spring.version>5.3.1</spring.version>
-</properties>
 <dependencies>
-    <dependency>
-    <groupId>org.springframework</groupId>
-    <artifactId>spring-context</artifactId>
-    <version>${spring.version}</version>
-    </dependency>
-    <dependency>
-    <groupId>org.springframework</groupId>
-    <artifactId>spring-jdbc</artifactId>
-    <version>${spring.version}</version>
-    </dependency>
-    <dependency>
-<groupId>org.springframework</groupId>
-<artifactId>spring-test</artifactId>
-<version>${spring.version}</version>
-</dependency>
-<!-- 连接池 -->
-<dependency>
-<groupId>com.alibaba</groupId>
-<artifactId>druid</artifactId>
-<version>1.2.8</version>
-</dependency>
-<!-- junit测试 -->
-<dependency>
-<groupId>junit</groupId>
-<artifactId>junit</artifactId>
-<version>4.12</version>
-<scope>test</scope>
-</dependency>
-<!-- MySQL驱动 -->
-<dependency>
-<groupId>mysql</groupId>
-<artifactId>mysql-connector-java</artifactId>
-<version>8.0.27</version>
-</dependency>
-<!-- 日志 -->
-<dependency>
-<groupId>org.slf4j</groupId>
-<artifactId>slf4j-api</artifactId>
-<version>1.7.30</version>
-</dependency>
-<dependency>
-<groupId>ch.qos.logback</groupId>
-<artifactId>logback-classic</artifactId>
-<version>1.2.3</version>
-</dependency>
-<!-- lombok用来简化实体类 -->
-<dependency>
-<groupId>org.projectlombok</groupId>
-<artifactId>lombok</artifactId>
-<version>1.16.16</version>
-</dependency>
-<!--MyBatis-Plus的核心依赖-->
-<dependency>
-<groupId>com.baomidou</groupId>
-<artifactId>mybatis-plus</artifactId>
-<version>3.4.3.4</version>
-</dependency>
+  <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter</artifactId>
+  </dependency>
+  <dependency>
+    <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+    <scope>test</scope>
+  </dependency>
+  <dependency>
+    <groupId>com.baomidou</groupId>
+    <artifactId>mybatis-plus-boot-starter</artifactId>
+    <version>3.5.1</version>
+  </dependency>
+  <dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <optional>true</optional>
+  </dependency>
+  <dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <scope>runtime</scope>
+  </dependency>
 </dependencies>
 ```
-#### 注意：
+### idea中安装lombok插件
 
-##### Spring整合MyBatis，需要MyBatis以及Spring整合MyBatis的依赖：
+## 编写代码
 
+### 配置application.yml
+
+```yml
+spring:
+ # 配置数据源信息
+datasource:
+  # 配置数据源类型
+ type: com.zaxxer.hikari.HikariDataSource
+  # 配置连接数据库信息
+ driver-class-name: com.mysql.cj.jdbc.Driver
+ url: jdbc:mysql://localhost:3306/mybatis_plus?characterEncoding=utf-
+8&useSSL=false
+ username: root
+ password: 123456
 ```
 
+**注意：**
+
+> 1、驱动类driver-class-name
+> spring boot 2.0（内置jdbc5驱动），驱动类使用：
+>
+> driver-class-name: com.mysql.jdbc.Driver
+> spring boot 2.1及以上（内置jdbc8驱动），驱动类使用：
+> driver-class-name: com.mysql.cj.jdbc.Driver
+> 否则运行测试用例的时候会有 WARN 信息
+>
+> 2、连接地址url
+> MySQL5.7版本的url：
+> jdbc:mysql://localhost:3306/mybatis_plus?characterEncoding=utf-8&useSSL=false
+> MySQL8.0版本的url：
+> jdbc:mysql://localhost:3306/mybatis_plus?
+> serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false
+> 否则运行测试用例报告如下错误：
+> java.sql.SQLException: The server time zone value 'ÖÐ¹ú±ê×¼Ê±¼ä' is unrecognized or
+> represents more
+
+###  启动类
+
+> 在Spring Boot启动类中添加@MapperScan注解，扫描mapper包
+
+```java
+@SpringBootApplication
+@MapperScan("com.atguigu.mybatisplus.mapper")
+public class MybatisplusApplication {
+  public static void main(String[] args) {
+    SpringApplication.run(MybatisplusApplication.class, args);
+ }
+}
 ```
 
-##### 但是，在以上的依赖列表中，并没有MyBatis以及Spring整合MyBatis的依赖，因为当我们引入了
+### 添加实体
 
-##### MyBatis-Plus的依赖时，就可以间接的引入这些依赖
-
-##### 并且依赖和依赖之间的版本必须兼容，所以我们不能随便引入其他版本的依赖，以免发生冲突
-
-##### 在官网上有明确提示：
-
-## 4 、Spring整合MyBatis
-
-### a>创建实体
-
-```
+```java
+@Data //lombok注解
 public class User {
-```
-```
-private Long id;
-private String name;
-private Integer age;
-private String email;
-```
-```
-public User() {
-}
-```
-```
-public User(Long id, String name, Integer age, String email) {
-this.id = id;
-this.name = name;
-this.age = age;
-```
-
-### b>创建MyBatis的核心配置文件
-
-##### 在resources下创建mybatis-config.xml
-
-```
-this.email = email;
-}
-```
-```
-public Long getId() {
-return id;
-}
-```
-```
-public void setId(Long id) {
-this.id = id;
-}
-```
-```
-public String getName() {
-return name;
-}
-```
-```
-public void setName(String name) {
-this.name = name;
-}
-```
-```
-public Integer getAge() {
-return age;
-}
-```
-```
-public void setAge(Integer age) {
-this.age = age;
-}
-```
-```
-public String getEmail() {
-return email;
-}
-```
-```
-public void setEmail(String email) {
-this.email = email;
-}
-```
-```
-@Override
-public String toString() {
-return "User{" +
-"id=" + id +
-", name='" + name + '\'' +
-", age=" + age +
-", email='" + email + '\'' +
-'}';
-}
+  private Long id;
+  private String name;
+  private Integer age;
+  private String email;
 }
 ```
 
-### c>创建mapper接口和映射文件
 
-#### mapper接口：
 
-#### mapper映射文件：
+### 添加mapper
 
-##### 在resources下的com/atguigu/mp/mapper目录下创建TestMapper.xml
+>BaseMapper是MyBatis-Plus提供的模板mapper，其中包含了基本的CRUD方法，泛型为操作的
+>实体类型
 
-### d>创建jdbc.properties
-
-##### 在resources下创建jdbc.properties
-
-```
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE configuration
-PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-config.dtd">
-<configuration>
-```
-```
-</configuration>
-```
-```
-public interface TestMapper {
-```
-```
-/**
-* 查询所有用户信息
-* @return
-*/
-List<User> getAllUser();
-```
-```
-}
-```
-```
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.atguigu.mp.mapper.TestMapper">
-```
-```
-<!--SQL片段，记录基础字段-->
-<sql id="BaseColumns">id,name,age,email</sql>
-```
-```
-<!--List<User> getAllUser();-->
-<select id="getAllUser" resultType="User">
-select <include refid="BaseColumns"></include> from user
-</select>
-```
-```
-</mapper>
-```
-```
-jdbc.driver=com.mysql.jdbc.Driver
-jdbc.url=jdbc:mysql://localhost:3306/mybatis_plus?
-useUnicode=true&characterEncoding=utf-8&useSSL=false
-jdbc.username=root
-jdbc.password= 123456
-```
-
-### e>创建Spring的配置文件
-
-##### 在resources下创建applicationContext.xml
-
-```
-<?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xmlns:context="http://www.springframework.org/schema/context"
-xsi:schemaLocation="http://www.springframework.org/schema/beans
-http://www.springframework.org/schema/beans/spring-beans.xsd
-http://www.springframework.org/schema/context
-https://www.springframework.org/schema/context/spring-context.xsd">
-```
-```
-<!-- 引入jdbc.properties -->
-<context:property-placeholder location="classpath:jdbc.properties">
-</context:property-placeholder>
-```
-```
-<!-- 配置Druid数据源 -->
-<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
-<property name="driverClassName" value="${jdbc.driver}"></property>
-<property name="url" value="${jdbc.url}"></property>
-<property name="username" value="${jdbc.username}"></property>
-<property name="password" value="${jdbc.password}"></property>
-</bean>
-```
-```
-<!-- 配置用于创建SqlSessionFactory的工厂bean -->
-<bean class="org.mybatis.spring.SqlSessionFactoryBean">
-<!-- 设置MyBatis配置文件的路径（可以不设置） -->
-<property name="configLocation" value="classpath:mybatis-config.xml">
-</property>
-<!-- 设置数据源 -->
-<property name="dataSource" ref="dataSource"></property>
-<!-- 设置类型别名所对应的包 -->
-<property name="typeAliasesPackage" value="com.atguigu.mp.pojo">
-</property>
-<!--
-设置映射文件的路径
-若映射文件所在路径和mapper接口所在路径一致，则不需要设置
--->
-<!--
-<property name="mapperLocations" value="classpath:mapper/*.xml">
-</property>
--->
-</bean>
-```
-```
-<!--
-配置mapper接口的扫描配置
-由mybatis-spring提供，可以将指定包下所有的mapper接口创建动态代理
-并将这些动态代理作为IOC容器的bean管理
--->
-<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-<property name="basePackage" value="com.atguigu.mp.mapper"></property>
-</bean>
-```
-```
-</beans>
-```
-
-### f>添加日志功能
-
-##### 在resources下创建logback.xml
-
-### g>测试
-
-#### 方式一：通过IOC容器
-
-#### 方式二：Spring整合junit
-
-```
-<?xml version="1.0" encoding="UTF-8"?>
-<configuration debug="false">
-```
-```
-<!--定义日志文件的存储地址 logs为当前项目的logs目录 还可以设置为../logs -->
-<property name="LOG_HOME" value="logs" />
-```
-```
-<!--控制台日志， 控制台输出 -->
-<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-<!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示 5 个字符
-宽度,%msg：日志消息，%n是换行符-->
-<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50}
-```
-- %msg%n</pattern>
-</encoder>
-</appender>
-
-```
-<!--myibatis log configure-->
-<logger name="com.apache.ibatis" level="TRACE"/>
-<logger name="java.sql.Connection" level="DEBUG"/>
-<logger name="java.sql.Statement" level="DEBUG"/>
-<logger name="java.sql.PreparedStatement" level="DEBUG"/>
-```
-```
-<!-- 日志输出级别 -->
-<root level="DEBUG">
-<appender-ref ref="STDOUT" />
-</root>
-</configuration>
-```
-```
-public class MyBatisPlusTest {
-```
-```
-@Test
-public void testMyBatis(){
-ApplicationContext ac = new
-ClassPathXmlApplicationContext("applicationContext.xml");
-TestMapper mapper = ac.getBean(TestMapper.class);
-mapper.getAllUser().forEach(user -> System.out.println(user));
-}
-```
-```
-}
-```
-```
-//在Spring的环境中进行测试
-@RunWith(SpringJUnit4ClassRunner.class)
-//指定Spring的配置文件
-@ContextConfiguration("classpath:applicationContext.xml")
-public class MyBatisPlusTest {
-```
-
-#### 结果：
-
-## 5 、加入MyBatis-Plus
-
-### a>修改applicationContext.xml
-
-##### Spring整合MyBatis
-
-##### 加入MyBatis-Plus之后
-
-```
-@Autowired
-private TestMapper testMapper;
-```
-```
-@Test
-public void testMyBatisBySpring(){
-testMapper.getAllUser().forEach(user -> System.out.println(user));
-}
-```
-```
-}
-```
-```
-<!-- 配置用于创建SqlSessionFactory的工厂bean -->
-<bean class="org.mybatis.spring.SqlSessionFactoryBean">
-<!-- 设置MyBatis配置文件的路径（可以不设置） -->
-<property name="configLocation" value="classpath:mybatis-config.xml">
-</property>
-<!-- 设置数据源 -->
-<property name="dataSource" ref="dataSource"></property>
-<!-- 设置类型别名所对应的包 -->
-<property name="typeAliasesPackage" value="com.atguigu.mp.pojo"></property>
-<!--
-设置映射文件的路径
-若映射文件所在路径和mapper接口所在路径一致，则不需要设置
--->
-<!--
-<property name="mapperLocations" value="classpath:mapper/*.xml">
-</property>
--->
-</bean>
-```
-```
-<!-- 此处使用的是MybatisSqlSessionFactoryBean -->
-<bean
-class="com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean">
-```
-
-##### 此处使用的是MybatisSqlSessionFactoryBean
-
-##### 经观察，目前bean中配置的属性和SqlSessionFactoryBean一致
-
-##### MybatisSqlSessionFactoryBean是在SqlSessionFactoryBean的基础上进行了增强
-
-##### 即具有SqlSessionFactoryBean的基础功能，又具有MyBatis-Plus的扩展配置
-
-##### 具体配置信息地址：https://baomidou.com/pages/56bac0/#%E5%9F%BA%E6%9C%AC%E9%
-
-##### 85%8D%E7%BD%AE
-
-### b>创建mapper接口
-
-##### BaseMapper是MyBatis-Plus提供的基础mapper接口，泛型为所操作的实体类型，其中包含
-
-##### CRUD的各个方法，我们的mapper继承了BaseMapper之后，就可以直接使用BaseMapper所提
-
-##### 供的各种方法，而不需要编写映射文件以及SQL语句，大大的提高了开发效率
-
-### c>测试
-
-### d>结果
-
-```
-<!-- 设置MyBatis配置文件的路径（可以不设置） -->
-<property name="configLocation" value="classpath:mybatis-config.xml">
-</property>
-<!-- 设置数据源 -->
-<property name="dataSource" ref="dataSource"></property>
-<!-- 设置类型别名所对应的包 -->
-<property name="typeAliasesPackage" value="com.atguigu.mp.pojo"></property>
-<!--
-设置映射文件的路径
-若映射文件所在路径和mapper接口所在路径一致，则不需要设置
--->
-<!--
-<property name="mapperLocations" value="classpath:mapper/*.xml">
-</property>
--->
-</bean>
-```
-```
+```java
 public interface UserMapper extends BaseMapper<User> {
 }
 ```
-```
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:applicationContext.xml")
-public class MyBatisPlusTest {
-```
-```
-@Autowired
-private UserMapper userMapper;
-```
-```
-@Test
-public void testMyBatisPlus(){
-//根据id查询用户信息
-System.out.println(userMapper.selectById( 1 ));
-}
-```
-```
+
+### 测试
+
+```java
+@SpringBootTest
+public class MybatisPlusTest {
+  @Autowired
+  private UserMapper userMapper;
+  @Test
+  public void testSelectList(){
+    //selectList()根据MP内置的条件构造器查询一个list集合，null表示没有条件，即查询所有
+    userMapper.selectList(null).forEach(System.out::println);
+ }
 }
 ```
 
-## 6 、总结
+**注意：**
 
-##### 在Spring整合MyBatis中加入了MyBatis-Plus后，我们就可以使用MyBatis-Plus所提供的BaseMapper
+>IDEA在 userMapper 处报错，因为找不到注入的对象，因为类是动态创建的，但是程序可以正确
+>的执行。
+>为了避免报错，可以在mapper接口上添加 **@Repository** 注解
 
-##### 实现CRUD，并不需要编写映射文件以及SQL语句
 
-##### 但是若要自定义SQL语句，仍然可以编写映射文件而不造成任何影响
+### 添加日志功能
 
-##### 因为MyBatis-Plus只做增强，而不做改变
+在application.yml中配置日志输出
+
+```yml
+# 配置MyBatis日志
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+```
+
+
+
+
+
+
+
+
+
+
 
 # 基本CRUD
 
